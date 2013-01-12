@@ -1,0 +1,4 @@
+dev.db
+local_settings.py
+ve-typequiz/
+*.pyc

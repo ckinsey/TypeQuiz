@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Results for Test #{{ test_result.id }}</h1>
+
+<table>
+    <tr>
+        <th>WPM</th>
+        <td>{{ test_result.get_wpm }}</td>
+    </tr>
+    <tr>
+        <th>Errors</th>
+        <td>{{ test_result.errors }}</td>
+    </tr>
+    <tr>
+        <th>Adjusted WPM</th>
+        <td>{{ test_result.get_nwpm }}</td>
+    </tr>
+</table>
+{% endblock %}

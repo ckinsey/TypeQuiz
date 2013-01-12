@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block title %}Select a Test{% endblock %}
+
+{% block content %}
+
+    <h1>Select a Test</h1>
+    <ul>
+    {% for test in tests %}
+        <li><a href="{% url 'quiz_detail' test.slug %}">{{ test.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock content %}
