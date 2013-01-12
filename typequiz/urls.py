@@ -19,6 +19,4 @@ urlpatterns = patterns('',
     url(r'^$', 'typequiz.web.views.homepage', name='homepage'),
     url(r'^quiz/(?P<slug>[a-zA-Z-]+)/$', 'typequiz.web.views.quiz', name='quiz_detail'),
     url(r'^test_result/(\d+)/$', 'typequiz.web.views.test_result', name='test_result'),
-
-    (r'^static/(?P.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 )
