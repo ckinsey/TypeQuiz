@@ -1,139 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title %}{% endblock %} | TypeTester</title>
+        <title>{% block title %}{% endblock %} | TypeQuiz</title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
 
-        <script type="text/javascript">
-            // Test Handler JS
-
-            (function($){
-                $.TypeTest = function(el, options){
-                    // To avoid scope issues, use 'base' instead of 'this'
-                    // to reference this class from internal events and functions.
-                    var base = this;
-
-                    // Access to jQuery and DOM versions of element
-                    base.$el = $(el);
-                    base.el = el;
-
-                    // Add a reverse reference to the DOM object
-                    base.$el.data("TypeTest", base);
-
-                    base.init = function(){
-                        base.options = $.extend({},$.TypeTest.defaultOptions, options);
-
-                        base.$el.data({
-                            'start_time': 0,
-                            'end_time': 0,
-                            'test_started': false,
-                            'test_init': false,
-                        });
-
-                        base.$el.bind('keyup', function(){
-                            if (!base.$el.data('test_started'))
-                                base.start_test();
-                        });
-
-                        if (base.options.debug)
-                            console.log("Start test keyup is bound.");
-
-                        $(base.options.end_test_selector).bind('click', function(){
-                            if (base.$el.data('test_started'))
-                                base.end_test();
-                        });
-
-                        if (base.options.debug)
-                            console.log("End test click is bound.");
-
-                        base.$el.data('test_init', true);
-                    };
-
-                    base.start_test = function(){
-
-                        base.$el.data({
-                            'test_started': true,
-                            'start_time': $.now()
-                        });
-
-                        if (base.options.debug)
-                            console.log("Test started at " + base.$el.data('start_time'));
-
-                    };
-
-                    base.end_test = function(){
-                        base.$el.data({
-                            'test_started': false,
-                            'end_time': $.now()
-                        });
-
-                        if (base.options.debug)
-                            console.log("Test ended at " + base.$el.data('end_time'));
-
-                        total_time = parseInt(base.$el.data('end_time')) - parseInt(base.$el.data('start_time'));
-
-                        if (base.options.debug)
-                            console.log("Total test time: " + total_time);
-
-                        base.send_result(base.$el.data('start_time'), base.$el.data('end_time'), total_time);
-                    }
-
-                    base.send_result = function(start_time, end_time, total_time){
-                        // Send the results off to the backend
-                        var wrapper_form = $(base.options.form_selector);
-                        var test_data = wrapper_form.serializeArray();
-                        var action = wrapper_form.attr('action');
-
-                        test_data.push({'name': 'start_time', 'value': start_time});
-                        test_data.push({'name': 'end_time', 'value': end_time});
-                        test_data.push({'name': 'total_time', 'value': total_time});
-
-
-                        if (base.options.debug)
-                            console.log("Sending to server:", action, test_data);
-
-
-                        $.post(action, test_data, function(response){
-                            if (base.options.debug)
-                                if (response['results'])
-                                    $("body").append("<a href='" + response['results'] + "'>View Results</a>");
-                        }, 'json');
-                    }
-
-                    // Run initializer
-                    base.init();
-                };
-
-                $.TypeTest.defaultOptions = {
-                    'debug': true,
-                    'end_test_selector': '#endTest',
-                    'form_selector': '#testForm'
-                };
-
-                $.fn.typeTest = function(options){
-                    return this.each(function(){
-                        (new $.TypeTest(this, options));
-                    });
-                };
-
-                // This function breaks the chain, but returns
-                // the TypeTest if it has been attached to the object.
-                $.fn.getTypeTest = function(){
-                    this.data("TypeTest");
-                };
-
-            })(jQuery);
-
-            $().ready(function(){
-                $("#id_user_test_text").typeTest();
-            });
-        </script>
-
+        {% block extra_head %} {% endblock %}
     </head>
     <body>
         <div class="container">
+
+            <header>
+                <div class="row">
+                    <h1><a href="/">TypeQuiz</a></h1>
+                    <p>A weekend project by <a href="http://www.caseykinsey.com">Casey Kinsey</a></p>
+                </div>
+            </header>
+
             <div class="row">
                 <div class="span12">
                 {% block content %}

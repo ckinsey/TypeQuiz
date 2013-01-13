@@ -5,10 +5,32 @@
 
 {% block content %}
 
-    <h1>Select a Test</h1>
-    <ul>
-    {% for test in tests %}
-        <li><a href="{% url 'quiz_detail' test.slug %}">{{ test.name }}</a></li>
-    {% endfor %}
-    </ul>
+    <div class="row">
+        <div class="span7">
+            <h2>Select a Test</h2>
+            <table class="table table-striped">
+            {% for test in tests %}
+                <tr><td><a href="{% url 'test_detail' test.slug %}">{{ test.name }}</a></td></tr>
+            {% endfor %}
+            </table>
+        </div>
+        <div class="span5">
+            <h2>Rationale</h2>
+
+            <p>My name is Casey Kinsey.  I'm a software engineering consultant from Northwest Arkansas.  I love projects, and I love solving problems.  Check out my <a href="http://www.caseykinsey.com/">website</a>, and my <a href="http://www.celerity.com/">company</a>.</a></p>
+            <p>I type for a living, and so I frequently take typing tests to warm myself up before a day's work to prevent fatigue and injury.  There's a pretty ubiquitous website out there for typing tests,
+            and I won't point any fingers, but it sucks.  Really badly.  So I decided for a weekend project, I'd make my own.</p>
+            <p>Texts are from the public domain and provided courtesy of the very cool folks at <a href="http://www.textbookrevolution.org">textbookrevolution.org</a>.</p>
+            <p>Total development time so far: <b>7 hours</b></p>
+
+            <h3>Proudly Abusing</h3>
+            <ul>
+                <li><a href="http://www.python.org/">Python</a>/<a href="http://www.djangoproject.com/">Django</a></li>
+                <li><a href="http://www.jquery.com/">jQuery</a></li>
+                <li><a href="http://twitter.github.com/bootstrap/index.html">Twitter Bootstrap</a></li>
+                <li><a href="http://www.heroku.com/">Heroku</a></li>
+            </ul>
+
+        </div>
+    </div>
 {% endblock content %}

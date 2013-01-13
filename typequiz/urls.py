@@ -17,6 +17,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^$', 'typequiz.web.views.homepage', name='homepage'),
-    url(r'^quiz/(?P<slug>[a-zA-Z-]+)/$', 'typequiz.web.views.quiz', name='quiz_detail'),
-    url(r'^test_result/(\d+)/$', 'typequiz.web.views.test_result', name='test_result'),
+    url(r'^test/(?P<slug>[a-zA-Z-]+)/$', 'typequiz.typing_test.views.test_detail', name='test_detail'),
+    url(r'^test_result/(\d+)/$', 'typequiz.typing_test.views.test_result', name='test_result'),
 )

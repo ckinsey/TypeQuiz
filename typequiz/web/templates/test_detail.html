@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block title %}{{ obj.name }}{% endblock %}
+
+{% block extra_head %}
+<script type="text/javascript">
+    // Test Handler JS
+
+    (function($){
+        $.TypeTest = function(el, options){
+            // To avoid scope issues, use 'base' instead of 'this'
+            // to reference this class from internal events and functions.
+            var base = this;
+
+            // Access to jQuery and DOM versions of element
+            base.$el = $(el);
+            base.el = el;
+
+            // Add a reverse reference to the DOM object
+            base.$el.data("TypeTest", base);
+
+            base.init = function(){
+                base.options = $.extend({},$.TypeTest.defaultOptions, options);
+
+                base.$el.data({
+                    'start_time': 0,
+                    'end_time': 0,
+                    'test_started': false,
+                    'test_init': false,
+                });
+
+                base.$el.bind('keyup', function(){
+                    if (!base.$el.data('test_started'))
+                        base.start_test();
+                });
+
+                if (base.options.debug)
+                    console.log("Start test keyup is bound.");
+
+                $(base.options.end_test_selector).bind('click', function(){
+                    if (base.$el.data('test_started'))
+                        base.end_test();
+                });
+
+                if (base.options.debug)
+                    console.log("End test click is bound.");
+
+                base.$el.data('test_init', true);
+            };
+
+            base.start_test = function(){
+
+                base.$el.data({
+                    'test_started': true,
+                    'start_time': $.now()
+                });
+
+                // Run the first tick, and start the timer
+                base.timer_ref = window.setInterval(base.tick_timer, 1000);
+                base.tick_timer();
+
+                if (base.options.debug)
+                    console.log("Test started at " + base.$el.data('start_time'));
+
+            };
+
+            base.end_test = function(){
+                base.$el.data({
+                    'test_started': false,
+                    'end_time': $.now()
+                });
+
+                if (base.options.debug)
+                    console.log("Test ended at " + base.$el.data('end_time'));
+
+                total_time = parseInt(base.$el.data('end_time')) - parseInt(base.$el.data('start_time'));
+
+                if (base.options.debug)
+                    console.log("Total test time: " + total_time);
+
+                // Stop the timer
+                window.clearInterval(base.timer_ref);
+
+                base.send_result(base.$el.data('start_time'), base.$el.data('end_time'), total_time);
+            }
+
+            base.send_result = function(start_time, end_time, total_time){
+                // Send the results off to the backend
+                var wrapper_form = $(base.options.form_selector);
+                var test_data = wrapper_form.serializeArray();
+                var action = wrapper_form.attr('action');
+
+                test_data.push({'name': 'start_time', 'value': start_time});
+                test_data.push({'name': 'end_time', 'value': end_time});
+                test_data.push({'name': 'total_time', 'value': total_time});
+
+
+                if (base.options.debug)
+                    console.log("Sending to server:", action, test_data);
+
+
+                $.post(action, test_data, function(response){
+
+                    if (response['results'])
+                        $("#colRight").append("<p><a class='btn btn-success' href='" + response['results'] + "'>View Results</a></p>");
+                }, 'json');
+            }
+
+            base.tick_timer = function(){
+                now = $.now();
+                milli = now - parseInt(base.$el.data('start_time'));
+                var seconds = Math.floor((milli / 1000) % 60);
+                var minutes = Math.floor((milli / (60 * 1000)) % 60);
+
+                if (seconds < 10)
+                    seconds = "0" + seconds;
+                $("#testTimer").html(minutes + ":" + seconds);
+                if (!$("#testTimer").hasClass("active"))
+                    $("#testTimer").addClass("active");
+
+            }
+
+            // Run initializer
+            base.init();
+        };
+
+        $.TypeTest.defaultOptions = {
+            'debug': true,
+            'end_test_selector': '#endTest',
+            'form_selector': '#testForm'
+        };
+
+        $.fn.typeTest = function(options){
+            return this.each(function(){
+                (new $.TypeTest(this, options));
+            });
+        };
+
+        // This function breaks the chain, but returns
+        // the TypeTest if it has been attached to the object.
+        $.fn.getTypeTest = function(){
+            this.data("TypeTest");
+        };
+
+    })(jQuery);
+
+    $().ready(function(){
+        $("#id_user_test_text").typeTest();
+    });
+
+</script>
+
+<style type="text/css" rel="stylesheet">
+    textarea { width: 95%;}
+
+    #testTimer.active {
+        font-size: 36px;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<h2>{{ obj.name }}</h2>
+
+<div class="row">
+    <div class="span7">
+        <blockquote class="test_text"><p>{{ obj.test_body|linebreaksbr }}</p></blockquote>
+
+        {% if form %}
+            <form id="testForm" action="{% url 'test_detail' obj.slug %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </form>
+        {% endif %}
+    </div>
+
+    <div class="span5" id="colRight">
+        <p id="testTimer">
+            Begin typing to start the test.
+        </p>
+        <input class="btn btn-primary" type="button" id="endTest" value="End Test" />
+    </div>
+
+</div>
+
+{% endblock %}

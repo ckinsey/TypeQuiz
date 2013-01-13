@@ -1,21 +1,54 @@
 {% extends "base.html" %}
+{% load typing_test %}
+
+{% block title %}You scored {{ test_result.get_nwpm }} WPM! {% endblock %}
+
+{% block extra_head %}
+<meta property="og:title" content="I just took a typing test with TypeQuiz" />
+<meta property="og:description" content="I tested at {{ test_result.get_nwpm }} WPM!  How do you stack up? Find out at http://typequiz.herokuapp.com" />
+<meta property="og:site_name" content="TypeQuiz" />
+
+<script type="text/javascript">var switchTo5x=true;</script>
+<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({publisher: "ur-183343fb-3fe0-4545-e5b1-8b33310a9c70"});</script>
+{% endblock %}
 
 {% block content %}
 
-<h1>Results for Test #{{ test_result.id }}</h1>
+<h2>Results for Test #{{ test_result.id }}</h2>
 
-<table>
-    <tr>
-        <th>WPM</th>
-        <td>{{ test_result.get_wpm }}</td>
-    </tr>
-    <tr>
-        <th>Errors</th>
-        <td>{{ test_result.errors }}</td>
-    </tr>
-    <tr>
-        <th>Adjusted WPM</th>
-        <td>{{ test_result.get_nwpm }}</td>
-    </tr>
-</table>
+<div class="row">
+
+    <div class="span7">
+        <p>User's Text:</p>
+        <blockquote>{% display_test_result_text test_result %}</blockquote>
+    </div>
+
+
+    <div class="span5">
+        <table class="table table-bordered">
+            <tr>
+                <th>WPM</th>
+                <td>{{ test_result.get_wpm }}</td>
+            </tr>
+            <tr>
+                <th>Errors</th>
+                <td>{{ test_result.errors }}</td>
+            </tr>
+            <tr>
+                <th>Adjusted WPM</th>
+                <td>{{ test_result.get_nwpm }}</td>
+            </tr>
+        </table>
+
+        <p>
+            <span class='st_facebook_large' displayText='Facebook' st_title="I just took a typing test with TypeQuiz" st_summary="I tested at {{ test_result.get_nwpm }} WPM!  How do you stack up? Find out at http://typequiz.herokuapp.com"></span>
+            <span class='st_twitter_large' displayText='Tweet' st_title="I just took a typing test with TypeQuiz" st_summary="I tested at {{ test_result.get_nwpm }} WPM!  How do you stack up? Find out at http://typequiz.herokuapp.com"></span>
+            <span class='st_linkedin_large' displayText='LinkedIn' st_title="I just took a typing test with TypeQuiz" st_summary="I tested at {{ test_result.get_nwpm }} WPM!  How do you stack up? Find out at http://typequiz.herokuapp.com"></span>
+            <span class='st_googleplus_large' displayText='Google +' st_title="I just took a typing test with TypeQuiz" st_summary="I tested at {{ test_result.get_nwpm }} WPM!  How do you stack up? Find out at http://typequiz.herokuapp.com"></span>
+            <span class='st_email_large' displayText='Email'st_title="I just took a typing test with TypeQuiz" st_summary="I tested at {{ test_result.get_nwpm }} WPM!  How do you stack up? Find out at http://typequiz.herokuapp.com"></span>
+        </p>
+
+    </div>
+</div>
 {% endblock %}
