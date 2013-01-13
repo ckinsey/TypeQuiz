@@ -1,0 +1,32 @@
+[
+    {
+        "model": "typing_test.typingtest",
+        "fields": {
+            "credits": "<i>An Evolutionist Deconstructs Creationism,</i> Arndt von Hippel;  <a href=\"http://www.textbookrevolution.org/index.php/Book:An_Evolutionist_Deconstructs_Creationism\">http://www.textbookrevolution.org/index.php/Book:An_Evolutionist_Deconstructs_Creationism</a>", 
+            "test_body": "Our more successful Stone Age ancestors made great efforts to understand significant phenomena or unusual occurrences so they might develop a reasoned response. Memorable narrative-type explanations tended to persist and evolve as long as they seemed useful, regardless of their plausibility. Of course, ordinary evidence-based explanations required regular revision and updating as well. Thus humans developed, modified and discarded innumerable hypotheses about life and the world.\r\n\r\nMany theological constructions failed to attract interest. Some had inadequate support, others offered little that was new or useful. Only a few religious hypotheses grew up to become major religions that replicated successfully in many minds and lasted for centuries or millennia. Yet even the most successful religions were destined to die--often through decisive military defeat by forces claiming the support of more powerful deities.", 
+            "avg_time": null, 
+            "name": "On the usefulness of hypothetical entities and events", 
+            "slug": "default"
+        }
+    }, 
+    {
+        "model": "typing_test.typingtest", 
+        "fields": {
+            "credits": "<i>\r\n\tEssential Physics:  Part 1; Relativity, Particle Dynamics, Gravitation, and Wave Motion\r\n</i>, \r\n\r\nFrank W. K. Firk;\r\n\r\n<a href=\"http://www.textbookrevolution.org/index.php/Book:Essential_Physics\">\r\n\thttp://www.textbookrevolution.org/index.php/Book:Essential_Physics\r\n</a>", 
+            "test_body": "It is a remarkable fact that very few fundamental laws are required to describe the enormous range of physical phenomena that take place throughout the universe. The study of these fundamental laws is at the heart of Physics. The laws are found to have a mathematical structure; the interplay between Physics and Mathematics is therefore emphasized throughout this book. For example, Galileo found by observation, and Newton developed within a mathematical framework, the Principle of Relativity: the laws governing the motions of objects have the same mathematical form in all inertial frames of reference.\r\n\r\nInertial frames move at constant speed in straight lines with respect to each other \u2013 they are mutually non-accelerating. We say that Newton\u2019s laws of motion are invariant under the Galilean transformation. The discovery of key invariants of Nature has been essential for the development of the subject.\r\n\r\nEinstein extended the Newtonian Principle of Relativity to include the motions of beams of light and of objects that move at speeds close to the speed of light. This extended principle forms the basis of Special Relativity. Later, Einstein generalized the principle to include accelerating frames of reference. The general principle is known as the Principle of Covariance; it forms the basis of the General Theory of Relativity (a theory of Gravitation).", 
+            "avg_time": null, 
+            "name": "Essential Physics", 
+            "slug": "essential-physics"
+        }
+    }, 
+    {
+        "model": "typing_test.typingtest",
+        "fields": {
+            "credits": "<i>\r\n\tOutline of US History \r\n</i>, \r\n\r\nUS State Department;\r\n\r\n<a href=\"http://www.textbookrevolution.org/index.php/Book:Outline_of_US_History\">\r\n\thttp://www.textbookrevolution.org/index.php/Book:Outline_of_US_History\r\n</a>", 
+            "test_body": "The American Revolution had a significance far beyond the North American continent. It attracted the attention of a political intelligentsia throughout the European continent. Idealistic notables such as Thaddeus Kosciusko, Friedrich von Steuben, and the Marquis de Lafayette joined its ranks to affirm liberal ideas they hoped to transfer to their own nations. Its success strengthened the concept of natural rights throughout the Western world and furthered the Enlightenment rationalist critique of an old order built around hereditary monarchy and an established church. In a very real sense, it was a precursor to the French Revolution, but it lacked the French Revolution\u2019s violence and chaos because it had occurred in a society that was already fundamentally liberal.\r\n\r\nThe ideas of the Revolution have been most often depicted as a triumph of the social contract/natural rights theories of John Locke. Correct so far as it goes, this characterization passes too quickly over the continuing importance of Calvinist dissenting Protestantism, which from the Pilgrims and Puritans on had also stood for the ideals of the social contract and the self-governing community. Lockean intellectuals and the Protestant clergy were both important advocates of compatible strains of liberalism that had flourished in the British North American colonies.", 
+            "avg_time": null, 
+            "name": "The Significance of the American Revolution", 
+            "slug": "the-significance-of-the-american-revolution"
+        }
+    }
+]
