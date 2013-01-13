@@ -1,5 +1,6 @@
 [
     {
+        "pk": null,
         "model": "typing_test.typingtest",
         "fields": {
             "credits": "<i>An Evolutionist Deconstructs Creationism,</i> Arndt von Hippel;  <a href=\"http://www.textbookrevolution.org/index.php/Book:An_Evolutionist_Deconstructs_Creationism\">http://www.textbookrevolution.org/index.php/Book:An_Evolutionist_Deconstructs_Creationism</a>", 
@@ -10,6 +11,7 @@
         }
     }, 
     {
+        "pk": null,
         "model": "typing_test.typingtest", 
         "fields": {
             "credits": "<i>\r\n\tEssential Physics:  Part 1; Relativity, Particle Dynamics, Gravitation, and Wave Motion\r\n</i>, \r\n\r\nFrank W. K. Firk;\r\n\r\n<a href=\"http://www.textbookrevolution.org/index.php/Book:Essential_Physics\">\r\n\thttp://www.textbookrevolution.org/index.php/Book:Essential_Physics\r\n</a>", 
@@ -20,6 +22,7 @@
         }
     }, 
     {
+        "pk": null,
         "model": "typing_test.typingtest",
         "fields": {
             "credits": "<i>\r\n\tOutline of US History \r\n</i>, \r\n\r\nUS State Department;\r\n\r\n<a href=\"http://www.textbookrevolution.org/index.php/Book:Outline_of_US_History\">\r\n\thttp://www.textbookrevolution.org/index.php/Book:Outline_of_US_History\r\n</a>", 
