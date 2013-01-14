@@ -166,8 +166,12 @@
 
 <div class="row">
     <div class="span7">
-        <blockquote class="test_text"><p>{{ obj.test_body|linebreaksbr }}</p></blockquote>
-
+        <blockquote class="test_text">
+            <p>{{ obj.test_body|linebreaksbr }}</p>
+            {% if obj.credits %}
+                <br/><small>{{ obj.credits|safe }}</small>
+            {% endif %}
+        </blockquote>
         {% if form %}
             <form id="testForm" action="{% url 'test_detail' obj.slug %}" method="POST">
                 {% csrf_token %}

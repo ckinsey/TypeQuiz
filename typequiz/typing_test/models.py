@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 
+
 # Create your models here.
 class TypingTest(models.Model):
     name = models.CharField(max_length=128)
@@ -9,6 +10,13 @@ class TypingTest(models.Model):
     slug = models.SlugField(blank=True, null=True)
 
     credits = models.TextField(blank=True, null=True)
+
+    def __unicode__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return self.name
+
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -34,8 +42,22 @@ class TestResult(models.Model):
     def get_wpm(self):
         minutes = float(self.total_time) / float(60)
         words = self.total_chars / 5
-        return float(words) / minutes
+        return round(float(words) / minutes, 2)
+
 
     def get_nwpm(self):
-        return self.get_wpm() - (2 * self.errors)
+        return round(self.get_wpm() - (2 * self.errors), 2)
 
+    def __unicode__(self):
+        return self.__str__()
+
+    def __str__(self):
+        return "Result #%d: %s" % (self.id, self.typing_test.name)
+
+
+    def save(self, *args, **kwargs):
+        # 1 sec minimum
+        if self.total_time == 0:
+            self.total_time = 1
+
+        super(TestResult, self).save(*args, **kwargs)
